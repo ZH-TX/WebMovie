@@ -44,8 +44,9 @@
 }
 
 #footer1 ul{
+    height: 100%;
     display: flex;
-    align-content: center;
+    align-items: center;
    
     
    

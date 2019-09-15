@@ -9,8 +9,8 @@
                 <router-link tag="div" class="hot_item active" to="/movie/playing">正在热映</router-link >
                 <router-link tag="div" class="hot_item" to="/movie/coming">即将上映</router-link >
 				
-				<router-link tag="div" class="search_entry" to="/movie/serach">
-					<i class="iconfont icon-sousuo"></i>
+				<router-link tag="div" class="search_entry" to="/movie/search">
+					<i class="iconfont icon-sousuo" style="color:#e45847; font-size:20px "></i>
 				</router-link >
             </sub-menu>
 				
@@ -37,6 +37,7 @@ import subMenu from 'components/common/subMenu/subMenu'
 
 div.router-link-active{
     border-bottom:2px solid  #e54847;
+    color: #e54847;
     padding:0 3px;
 }
 

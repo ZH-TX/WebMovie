@@ -1,10 +1,17 @@
 <template>
     <div>
         <main-comp>
-            
-			<b-scroll class="test">
-				<ul>
-					<li class="items-info">
+            <div class="search_body">
+				<div class="search-input">
+					<div class="search-input-wrapper">
+						<i class="iconfont icon-sousuo"></i>
+						<input type="text">
+					</div>					
+				</div>
+				<div class="search_result">
+					<div class="sub-title">电影/电视剧/综艺</div>
+					<ul>
+						<li class="items-info">
 						<div class=""><img src="images/movie_1.jpg"></div>
 						<div class="">
 							<h3>无名之辈</h3>
@@ -20,42 +27,63 @@
 							购票
 						</button>
 					</li>
-				
-				</ul>
-
-
-
-			</b-scroll>
-
+					</ul>
+				</div>
+			</div>
         </main-comp>
         
-
     </div>
 </template>
 
 <script>
-
 import mainComp from 'components/common/mainComp/mainComp'
-import bScroll from 'components/common/scroll/Scroll'
+
 
     export default {
-        name:'coming',
+        name:'search',
         components:{
             mainComp,
-            bScroll,
         }
-        
         
     }
 </script>
 
 <style lang="scss" scoped>
-.test {
-		height: 100%;
-		// overflow: hidden;
-	}
+.search-input{
+    padding: 8px 10px;
+    background-color: #f5f5f5;
+	border-bottom: 1px solid #e5e5e5;
+	
+	
 
-	.items-info{
+}
+.search-input-wrapper{
+	background: #fff;
+	border: 1px solid #e9e6e6;
+	border-radius: 5px;
+}
+.search-input-wrapper i{
+	padding-left: 10px ;
+	// padding-right: 10px;
+	
+}
+.search-input-wrapper input{
+	padding-left:5px; 
+	height: 30px;
+	width: 85%;
+	outline: none;
+	border: none;
+}
+
+.sub-title{
+	height: 30px;
+	line-height: 30px;
+	text-indent: 15px;
+	border: 1px solid #e9e6e6;
+	color: #a5a1a1
+}
+
+.items-info{
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -90,7 +118,7 @@ import bScroll from 'components/common/scroll/Scroll'
 		outline: none;
 
 
-		background:#3c9fe6;
+		background: #e54847;
 		color: #fff;
 		font-size: 13px;
 		border-radius: 5px;

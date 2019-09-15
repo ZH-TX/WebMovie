@@ -5,6 +5,8 @@
 			<headbar><div slot='center'>喵喵电影</div> </headbar>
 			<changebar></changebar>
 			
+			
+			
 			<keep-alive>
 				<router-view></router-view>
 			
@@ -18,6 +20,7 @@
 <script>
 import headbar from 'components/content/headbar'
 import changebar from 'components/content/changebar'
+import bScroll from 'components/common/scroll/Scroll'
 
 // import playComp from 'components/content/playComp'
 
@@ -31,13 +34,14 @@ import changebar from 'components/content/changebar'
 		components:{
 			headbar,
 			changebar,
-			// playComp,
+			
 		}
         
     }
 </script>
 
 <style lang="scss" scoped>
+
 
 
 

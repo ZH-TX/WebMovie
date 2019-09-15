@@ -16,8 +16,8 @@ export default [
         component:() =>import ('components/content/movie/comeComp')
     },
     {
-        path:'serach',
-        component:() =>import ('components/content/movie/serachComp')
+        path:'search',
+        component:() =>import ('components/content/movie/searchComp')
     },
    
 

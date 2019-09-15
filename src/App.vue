@@ -25,7 +25,7 @@
 
 
 import headbar from 'components/content/headbar'
-import changebar from 'components/content/changebar'
+// import changebar from 'components/content/changebar'
 import foot1 from 'components/content/footer'
 
 
@@ -40,7 +40,7 @@ export default {
   name:'app',
   components:{
     headbar,
-    changebar,
+    // changebar,
     foot1,
   }
 }
