@@ -1,17 +1,17 @@
 <template>
 	<div>
 		<main-comp>
-			
+			<!--未完功能: 1上拉刷新,下拉加载更多 -->
 			<b-scroll class="test">
 				<ul>
-					<li class="items-info">
-						<div class=""><img src="images/movie_1.jpg"></div>
-						<div class="">
-							<h3>无名之辈</h3>
+					<li class="items-info" v-for="items in movieList" :key="items.id">
+						<div class="set-img"><img :src="items.img|setWH('128.180')"></div>
+						<div class="main-info">
+							<h3>{{items.nm}} </h3>
 							<div class="sub-con">
-								<p>观众评分 <span class="grade">9.2</span></p>
-								<p>主演: 陈建斌,任素汐,潘斌龙</p>
-								<p>今天55家影院放映607场</p>
+								<p>观众评分 <span class="grade">{{items.sc}}</span></p>
+								<p>主演: {{items.star}}</p>
+								<p>{{items.showInfo}}</p>
 
 							</div>
 							
@@ -42,6 +42,8 @@
 
 	import bScroll from 'components/common/scroll/Scroll'
 
+	import { getPlay } from "network/movie/play"
+
 
 
 	export default {
@@ -50,18 +52,32 @@
 			mainComp,
 			bScroll,
 
-
-			mounted() {
-				console.log(this.$els);
-
+			},
+			data(){
+				return{
+					movieList:[],
+				}
 			},
 
 
+			
+			mounted() {
+				getPlay().then(res=>{
+				
+					// console.log(res.data.data.movieList);
+					this.movieList=res.data.data.movieList;
+				})
+				
+
+			},
+
 			methods: {
 
-			}
+			},
 
-		}
+			
+
+		
 
 	}
 </script>
@@ -87,14 +103,36 @@
 		// list-style: none;
 
 	}
+	.set-img img{
+		height: 90px;
+		box-shadow: 2px 2px 5px #333333;
+	}
+	.main-info{
+		width: 50%;
+	}
+	.main-info h3{
+		width:80%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
 
 	.sub-con{
 		font-size: 14px;
 		color: #666;
 	}
 
+	// div h3,div p{
+	// 	overflow: hidden;
+	// 	text-overflow: ellipsis;
+	// 	white-space: nowrap;
+	// }
+
 	.sub-con p{
 		padding: 5px 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 	.grade{
 		color: #faaf00;

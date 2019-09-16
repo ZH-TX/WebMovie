@@ -10,6 +10,11 @@ import axios from 'axios'
 Vue.prototype.$axios=axios
 
 
+Vue.filter('setWH',(url,arg)=>{
+  return url.replace(/w\.h/,arg);
+})
+
+
 
 
 Vue.config.productionTip = false
@@ -21,4 +26,4 @@ new Vue({
 }).$mount('#app')
 
 
-// axios.get('api/cityList').then((res)=>console.log(res.data))
+// axios.get('/api/cityList').then((res)=>console.log(res.data))
