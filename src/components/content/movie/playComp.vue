@@ -2,7 +2,9 @@
 	<div>
 		<main-comp>
 			<!--未完功能: 1上拉刷新,下拉加载更多 -->
-			<b-scroll class="test">
+
+			<loading v-if="isLoad"></loading>
+			<b-scroll class="test" v-else>
 				<ul>
 					<li class="items-info" v-for="items in movieList" :key="items.id">
 						<div class="set-img"><img :src="items.img|setWH('128.180')"></div>
@@ -55,14 +57,18 @@
 			},
 			data(){
 				return{
+					isLoad:true,
 					movieList:[],
 				}
 			},
 
 
 			
-			mounted() {
-				getPlay().then(res=>{
+			activated() {
+				this.isLoad=false;
+
+				let cityId=this.$store.state.city.id
+				getPlay(cityId).then(res=>{
 				
 					// console.log(res.data.data.movieList);
 					this.movieList=res.data.data.movieList;

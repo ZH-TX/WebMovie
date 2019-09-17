@@ -30,12 +30,6 @@ import foot1 from 'components/content/footer'
 
 
 
-
-
-
-
-
-
 export default {
   name:'app',
   components:{

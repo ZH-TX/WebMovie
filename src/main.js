@@ -4,10 +4,16 @@ import App from './App.vue'
 import router from './routers'
 import store from './stores'
 
-
+// 将axios注册为全局组件
 import axios from 'axios'
-
 Vue.prototype.$axios=axios
+
+
+// loading 注册为全局组件  Vue.component();
+
+import loading from 'components/common/loading/loading'
+
+Vue.component('loading',loading)
 
 
 Vue.filter('setWH',(url,arg)=>{

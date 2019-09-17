@@ -3,7 +3,7 @@
       
             <sub-menu>
                 <router-link tag="div" class="city_name" to="/movie/city">
-					<span>大连</span><i class="iconfont icon-lower-triangle"></i>
+					<span>{{$store.state.city.nm}}</span><i class="iconfont icon-lower-triangle"></i>
 				</router-link >
 				
                 <router-link tag="div" class="hot_item active" to="/movie/playing">正在热映</router-link >

@@ -1,91 +1,33 @@
 <template>
 	<div>
 		<main-comp>
-			<b-scroll class="test"></b-scroll>
+			<!-- <b-scroll class="test"></b-scroll> -->
 				<div class="city_body">
-					<div class="city_list">
-						<div class="city_hot">
-							<h2>热门城市</h2>
-							<ul class="">
-								<li>上海</li>
-								<li>北京</li>
-								<li>上海</li>
-								<li>北京</li>
-								<li>上海</li>
-								<li>北京</li>
-								<li>上海</li>
-								<li>北京</li>
-								<li>上海</li>
-								<li>北京</li>
-								<li>上海</li>
-								<li>北京</li>
+					<div class="city_list" >
+						<div class="city_hot" >
+							<h2 >热门城市</h2>
+							<ul class="" >
+							
+								<li v-for="lists in list" :key="lists.id" @click="handleTo(lists.nm,lists.id)">{{lists.nm}}</li>	
+
 
 							</ul>
 						</div>
-						<div class="city_sort">
-							<div>
-								<h2>A</h2>
+						<div class="city_sort" >
+							<div v-for="items in cities" :key="items.index">
+								<h2>{{items.index}}</h2>
 								<ul>
-									<li>阿拉善盟</li>
-									<li>鞍山</li>
-									<li>安庆</li>
-									<li>安阳</li>
+									<li v-for="lists in items.list" :key="lists.id" @click="handleTo(lists.nm,lists.id)">{{lists.nm}}</li>
+									
 								</ul>
 							</div>
-							<div>
-								<h2>B</h2>
-								<ul>
-									<li>北京</li>
-									<li>保定</li>
-									<li>蚌埠</li>
-									<li>包头</li>
-								</ul>
-							</div>
-							<div>
-								<h2>A</h2>
-								<ul>
-									<li>阿拉善盟</li>
-									<li>鞍山</li>
-									<li>安庆</li>
-									<li>安阳</li>
-								</ul>
-							</div>
-							<div>
-								<h2>B</h2>
-								<ul>
-									<li>北京</li>
-									<li>保定</li>
-									<li>蚌埠</li>
-									<li>包头</li>
-								</ul>
-							</div>
-							<div>
-								<h2>A</h2>
-								<ul>
-									<li>阿拉善盟</li>
-									<li>鞍山</li>
-									<li>安庆</li>
-									<li>安阳</li>
-								</ul>
-							</div>
-							<div>
-								<h2>B</h2>
-								<ul>
-									<li>北京</li>
-									<li>保定</li>
-									<li>蚌埠</li>
-									<li>包头</li>
-								</ul>
-							</div>
+							
 						</div>
 					</div>
 					<div class="city_index">
 						<ul>
-							<li>A</li>
-							<li>B</li>
-							<li>C</li>
-							<li>D</li>
-							<li>E</li>
+							<li v-for="items in cities" :key="items.index">{{items.index}}</li>
+							
 						</ul>
 					</div>
 				</div>
@@ -98,14 +40,72 @@
 
 <script>
 	import mainComp from 'components/common/mainComp/mainComp'
-	import bScroll from 'components/common/scroll/Scroll'
+	// import bScroll from 'components/common/scroll/Scroll'
+
+	import { getCity ,City,City1,City2} from "network/movie/city";
 
 
 	export default {
 		name: 'city',
 		components: {
 			mainComp,
-			bScroll,
+			// bScroll,
+		},
+		data(){
+			return{
+				cities:[],
+				list:[]
+				
+
+			}
+		},
+		mounted(){
+
+			let dataStr= sessionStorage.getItem('data')
+			if(dataStr){
+				
+				this.cities=JSON.parse(dataStr).cityList;
+				this.list=JSON.parse(dataStr).hotList;
+
+			}
+			else{
+				getCity().then(res=>{
+				let cities=res.data.data.cities;
+				// this.formatCity(cities);
+				let data = new City2(cities);
+				this.cities=data.cityList;
+				this.list=data.hotList;
+				console.log(this.list);
+
+				// 将数据存储在本地上,保存的格式为字符串的类型
+				sessionStorage.setItem('data',JSON.stringify(data))
+				
+			
+					
+			})
+
+			}
+			
+
+		},
+		methods:{
+
+			handleTo(nm,id){
+				console.log(this.$store);
+				console.log(this.$route);
+				
+				
+				this.$store.commit('city/CITY_INFO',{nm,id});
+				// 跳转到指定城市;
+
+				sessionStorage.setItem('NM',nm);
+				sessionStorage.setItem('ID',id);
+
+				this.$router.push('/movie/playing');
+
+			}
+		
+			
 		}
 
 	}
@@ -145,14 +145,16 @@
 		font-size: 14px;
 		background: #F0F0F0;
 		font-weight: normal;
+		
 	}
 
 	.city_body .city_hot ul {
 		display: flex;
 		flex-wrap: wrap;
+		
 	}
 
-	.city_body .city_hot ul li {
+	.city_body .city_hot ul  li {
 		background: #fff;
 		width: 29%;
 		height: 33px;
@@ -195,6 +197,8 @@
 		flex-direction: column;
 		justify-content: center;
 		text-align: center;
+		line-height: 1.1;
 		border-left: 1px #e6e6e6 solid;
 	}
+
 </style>

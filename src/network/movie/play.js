@@ -6,10 +6,11 @@ import axios from 'axios'
 
 
 
-export function getPlay(){
+export function getPlay(cityId){
     return axios({
-         url:'/api/movieOnInfoList?cityId=10',
+         url:'/api/movieOnInfoList?',
          params:{
+            cityId,
 
          }
     })

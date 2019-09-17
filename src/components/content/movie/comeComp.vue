@@ -1,8 +1,9 @@
 <template>
     <div>
         <main-comp>
+			<loading v-if="isLoad"/>
             
-			<b-scroll class="test">
+			<b-scroll class="test" v-else>
 				<ul>
 					<li class="items-info" v-for="items in comingList" :key="items.id">
 						<div class="set-img"><img :src="items.img|setWH('128.180')"></div>
@@ -48,11 +49,14 @@ import { getCome } from "network/movie/coming";
 		},
 		data(){
 			return{
+				isLoad:true,
 				comingList:[],
 			}
 		},
-		mounted(){
-			getCome().then(res=>{
+		activated(){
+			this.isLoad=false;
+			let cityId= this.$store.state.city.id
+			getCome(cityId).then(res=>{
 				// console.log(res)
 
 				this.comingList=res.data.data.comingList;
