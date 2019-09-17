@@ -1,29 +1,49 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <!-- <div id="nav">
+      <router-link to="/movie">movie</router-link> |
+      <router-link to="/cinema">cinema</router-link>|
+      <router-link to="/mine">mine</router-link>
+    </div> -->
+    <headbar></headbar>
+    <!-- <changebar></changebar> -->
+
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
+
+    
+    <foot1></foot1>
+
+
+    
+
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+
+
+import headbar from 'components/content/headbar'
+// import changebar from 'components/content/changebar'
+import foot1 from 'components/content/footer'
+
+
+
+export default {
+  name:'app',
+  components:{
+    headbar,
+    // changebar,
+    foot1,
   }
 }
+</script>
+
+
+
+<style lang="scss">
+@import url('assets/css/base');
+@import url('assets/iconfont/iconfont')
+
 </style>
